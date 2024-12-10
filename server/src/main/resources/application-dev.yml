@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://host.docker.internal:1856/mealpick
+    username: ${db.user}
+    password: ${db.password}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+  ai:
+    openai:
+      api-key: ${openAi.api-key}
+  config:
+    import:
+      classpath:env-dev.yml
+
+server:
+  port: 8080
+
+jwt:
+  access:
+    key:
+    exp: 3600000 #1시간
+  refresh:
+    key:
+    exp: 86400000 #1일
