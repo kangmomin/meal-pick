@@ -1,10 +1,21 @@
+val kotlin = "1.9.25"
+val springBoot = "3.3.6"
+val dependencyManagement = "1.1.6"
+val asciidoctor = "3.3.2"
+val jacksonCore = "2.17.0"
+val jjwt = "0.11.2"
+val springCloud = "2023.0.4"
+val springAiBom = "0.8.1"
+val junitPlatform = "1.9.25"
+val springCloudFunction = "4.1.2"
+
 plugins {
-	kotlin("jvm") version "2.1.0"
-	id("org.jetbrains.kotlin.plugin.spring") version "2.1.0"
-	id("org.springframework.boot") version "3.3.0"
+	kotlin("jvm") version "1.9.25"
+	kotlin("plugin.jpa") version "1.9.25"
+	kotlin("plugin.spring") version "1.9.25"
+	id("org.springframework.boot") version "3.3.6"
 	id("io.spring.dependency-management") version "1.1.6"
 	id("org.asciidoctor.jvm.convert") version "3.3.2"
-	kotlin("plugin.jpa") version "2.1.0"
 }
 
 group = "com.mealpick"
@@ -25,7 +36,8 @@ extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencyManagement {
 	imports {
-		mavenBom("org.springframework.ai:spring-ai-bom:0.8.1")
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloud}")
+		mavenBom("org.springframework.ai:spring-ai-bom:${springAiBom}")
 	}
 }
 
@@ -35,12 +47,16 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	// open ai
+	// Open AI
 	implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter")
 	implementation("com.fasterxml.jackson.core:jackson-core")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation ("io.jsonwebtoken:jjwt-api:0.11.2")
-	implementation ("io.jsonwebtoken:jjwt-jackson:0.11.2")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlin}")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlin}")
+	implementation("io.jsonwebtoken:jjwt-api:${jjwt}")
+	implementation("io.jsonwebtoken:jjwt-jackson:${jjwt}")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+	implementation("org.springframework.cloud:spring-cloud-function-context:$springCloudFunction")
+	implementation("org.springframework.cloud:spring-cloud-function-web:$springCloudFunction")
 
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")

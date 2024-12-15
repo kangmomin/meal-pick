@@ -1,13 +1,10 @@
 package com.mealpick.mealpickServer.global.common.basic
 
 import jakarta.persistence.*
-import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.SQLRestriction
-import org.hibernate.annotations.SQLSelect
-import org.hibernate.annotations.Where
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.UUID
+import java.util.*
 
 @SQLRestriction("WHERE deletedAt != null")
 @MappedSuperclass

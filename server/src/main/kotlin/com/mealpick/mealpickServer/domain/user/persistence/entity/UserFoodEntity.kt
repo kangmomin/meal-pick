@@ -3,10 +3,9 @@ package com.mealpick.mealpickServer.domain.user.persistence.entity
 import com.mealpick.mealpickServer.domain.user.model.constant.FoodStatus
 import com.mealpick.mealpickServer.global.common.basic.BasicEntity
 import jakarta.persistence.*
-import java.util.*
 
-@Table(name = "user_food")
 @Entity
+@Table(name = "user_food")
 class UserFoodEntity (
     @Column(
         nullable = false,
@@ -14,7 +13,7 @@ class UserFoodEntity (
     )
     var name: String?,
 
-    @JoinColumn(name = "foods")
+    @JoinColumn(name = "tb_user.id")
     @ManyToOne(fetch = FetchType.LAZY)
     var user: UserEntity?,
 

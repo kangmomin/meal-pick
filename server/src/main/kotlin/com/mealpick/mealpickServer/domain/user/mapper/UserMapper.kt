@@ -2,11 +2,9 @@ package com.mealpick.mealpickServer.domain.user.mapper
 
 import com.mealpick.mealpickServer.domain.user.model.User
 import com.mealpick.mealpickServer.domain.user.model.UserFood
-import com.mealpick.mealpickServer.domain.user.model.constant.FoodStatus
 import com.mealpick.mealpickServer.domain.user.model.constant.FoodStatus.*
 import com.mealpick.mealpickServer.domain.user.persistence.entity.UserEntity
 import com.mealpick.mealpickServer.domain.user.persistence.entity.UserFoodEntity
-import org.springframework.stereotype.Component
 
 class UserMapper {
 
@@ -41,6 +39,42 @@ class UserMapper {
                 password = entity.password,
                 email = entity.email,
                 provider = entity.provider
+            )
+        }
+
+        fun toEntity(domain: User): UserEntity {
+            var foods: MutableList<UserFoodEntity> = ArrayList()
+
+            foods.addAll(domain.cantFoods?.map {
+                UserFoodEntity(
+                    name = it.name,
+                    user = null,
+                    CANT
+                )
+            } ?: ArrayList())
+            foods.addAll(domain.hateFoods?.map {
+                UserFoodEntity(
+                    name = it.name,
+                    user = null,
+                    HATE
+                )
+            } ?: ArrayList())
+            foods.addAll(domain.likeFoods?.map {
+                UserFoodEntity(
+                    name = it.name,
+                    user = null,
+                    LIKE
+                )
+            } ?: ArrayList())
+
+            return UserEntity(
+                name =  domain.name,
+                age = domain.age,
+                sex =  domain.sex,
+                foods = foods,
+                password = domain.password,
+                email = domain.email,
+                provider = domain.provider
             )
         }
     }
