@@ -10,12 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.util.matcher.RequestMatcher
-import org.springframework.stereotype.Component
 import org.springframework.web.cors.CorsUtils
 
 @Configuration
 @EnableWebSecurity
-class SpringSecurity (
+class SecurityConfig (
     private val jwtAuthFilter: JwtAuthFilter,
     private val securityExceptionHandler: SecurityExceptionHandler
 ) {
