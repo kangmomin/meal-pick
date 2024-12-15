@@ -1,7 +1,7 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:postgresql://host.docker.internal:1856/mealpick
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mealpick
     username: ${db.user}
     password: ${db.password}
 
@@ -19,14 +19,16 @@ spring:
   config:
     import:
       classpath:env-dev.yml
+    activate:
+      on-profile: dev
 
 server:
   port: 8080
 
 jwt:
   access:
-    key:
+    key: 'ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5'
     exp: 3600000 #1시간
   refresh:
-    key:
+    key: 'ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5ODZiYzdmYzUtOWJkOC00MWZkLWI2MjktZWJmZTFmODg5YWE5'
     exp: 86400000 #1일
